@@ -1,6 +1,5 @@
 
 ; (define-macro (def func args body)
-;     'YOUR-CODE-HERE
 ;     (list 'define func (list 'lambda args body))
 ; )
 
@@ -16,17 +15,28 @@
     	(cons-stream (f (car s)) (map-stream f (cdr-stream s)))))
 
 (define all-three-multiples
-  'YOUR-CODE-HERE
+  (cons-stream 3 (map-stream (lambda (x) (+ x 3)) all-three-multiples))
 )
 
 
 (define (compose-all funcs)
-  'YOUR-CODE-HERE
+  (if (null? funcs)
+  	(lambda (x) x)
+  	(lambda (x) ((compose-all (cdr funcs)) ((car funcs) x)))
+  )
 )
 
 
 (define (partial-sums stream)
-  'YOUR-CODE-HERE
-  (helper 0 stream)
+  (if (null? stream)
+    nil
+    (cons-stream 
+      (car stream)
+      (map-stream 
+        (lambda (x) (+ x (car stream))) 
+        (partial-sums (cdr-stream stream))
+      )
+    )
+  )
 )
 
