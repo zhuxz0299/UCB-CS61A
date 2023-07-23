@@ -1,0 +1,3 @@
+'add_trees-correct', (0, 70)
+'build_successors_table-correct', (512, 70)
+'construct_sent-correct', (1024, 70)
